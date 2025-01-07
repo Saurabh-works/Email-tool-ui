@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Box, Typography, TextField } from "@mui/material";
 import { MuiChipsInput } from "mui-chips-input"; 
 import axios from "axios";
+import URL from "../Config";
 
 const Email = () => {
   const [emails, setEmails] = useState([]);
@@ -25,7 +26,8 @@ const Email = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/parse-emails",
+          // "http://localhost:5000/api/parse-emails",
+          `${URL}/api/parse-emails`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -42,7 +44,7 @@ const Email = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/schedule-email", {
+      const response = await axios.post(`${URL}/api/schedule-email`, {
         senderEmail,
         subject,
         messageBody,
